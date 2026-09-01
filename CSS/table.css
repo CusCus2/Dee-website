@@ -1,0 +1,156 @@
+/* Spanish Lesson Options Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #fff5f5 0%, #fff0e6 100%);
+    color: #333;
+    line-height: 1.6;
+    padding: 20px 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Common Section Styles */
+.lesson-options-section {
+    background: white;
+    border-radius: 20px;
+    padding: 50px 40px;
+    box-shadow: 0 15px 35px rgba(214, 48, 49, 0.1);
+    margin-bottom: 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+.lesson-options-section::before {
+    content: '¡Hola!';
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 3em;
+    color: rgba(255, 107, 53, 0.1);
+    font-weight: bold;
+    transform: rotate(15deg);
+    z-index: 1;
+}
+
+.lesson-options-section h2 {
+    color: #d63031;
+    font-size: 2.5em;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 700;
+    position: relative;
+    z-index: 2;
+}
+
+.lesson-options-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #ff6b35, #ffa726);
+    border-radius: 2px;
+}
+
+.intro-text {
+    text-align: center;
+    font-size: 1.2em;
+    margin-bottom: 40px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #666;
+    position: relative;
+    z-index: 2;
+}
+
+.intro-text strong {
+    color: #d63031;
+}
+
+/* VERSION 1: TABLE STYLES */
+.table-container {
+    overflow-x: auto;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.lesson-options-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.lesson-options-table thead {
+    background: linear-gradient(135deg, #d63031 0%, #ff6b35 100%);
+    color: white;
+}
+
+.lesson-options-table th {
+    padding: 20px 15px;
+    text-align: left;
+    font-weight: 700;
+    font-size: 1.1em;
+    border: none;
+}
+
+.category-header {
+    width: 25%;
+}
+
+.option-header {
+    width: 37.5%;
+}
+
+.lesson-options-table td {
+    padding: 20px 15px;
+    border-bottom: 1px solid #f0f0f0;
+    vertical-align: top;
+}
+
+.category-cell {
+    background: linear-gradient(135deg, #fff5f5 0%, #ffe5d9 100%);
+    font-weight: 600;
+    color: #d63031;
+    border-right: 2px solid #ff6b35;
+}
+
+.content-cell {
+    background: white;
+}
+
+.content-cell ul, .content-cell ol {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.content-cell li {
+    margin-bottom: 8px;
+    font-size: 0.95em;
+    line-height: 1.5;
+}
+
+.pricing-note {
+    background: linear-gradient(135deg, #fff8f0 0%, #ffe5d9 100%);
+    color: #d63031;
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+    font-weight: 600;
+    font-size: 0.9em;
+    border-left: 4px solid #ff6b35;
+}

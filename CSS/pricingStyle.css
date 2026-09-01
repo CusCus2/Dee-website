@@ -1,0 +1,78 @@
+/* =========================
+SERVICES SECTION STYLES
+========================= */
+.services-grid {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(300px, 1fr)
+  ); /* Responsive grid */
+  gap: 30px;
+  padding: 0 20px;
+}
+
+.service-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column; /* FIXED: Column layout for equal height sections */
+  height: 100%; /* FIXED: All cards same height */
+}
+
+.service-card:hover {
+  transform: translateY(-5px); /* Lift effect on hover */
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.service-header {
+  margin-bottom: 20px; /* FIXED: Consistent spacing */
+}
+
+.service-header h3 {
+  color: #2d3748;
+  font-size: 22px;
+  margin: 0;
+  text-align: center;
+}
+
+.service-description {
+  margin-bottom: 20px; /* FIXED: Consistent spacing */
+  flex-grow: 0; /* Don't expand this section */
+}
+
+.service-pricing {
+  margin-bottom: 20px; /* FIXED: Consistent spacing */
+  padding: 15px;
+  background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+  border-radius: 8px;
+  flex-grow: 0; /* Don't expand this section */
+}
+
+.service-includes {
+  margin-top: auto; /* FIXED: Push to bottom for alignment */
+}
+
+.service-includes ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.service-includes li {
+  padding: 5px 0;
+  position: relative;
+  padding-left: 20px;
+}
+
+.service-includes li::before {
+  content: "✓"; /* Checkmark bullet */
+  position: absolute;
+  left: 0;
+  color: #48bb78;
+  font-weight: bold;
+}

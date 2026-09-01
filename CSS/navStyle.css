@@ -1,0 +1,66 @@
+/* =========================
+HEADER & NAVIGATION STYLES
+========================= */
+.site-header {
+  display: flex; /* Flexbox for horizontal alignment */
+  align-items: center; /* FIXED: Vertically centers both title and nav */
+  justify-content: space-between; /* Pushes title left, nav right */
+  padding: 15px 20px; /* Reduced padding for better proportion */
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); /* Deeper shadow for premium feel */
+}
+
+.site-title {
+  font-size: 28px; /* Slightly smaller for better balance */
+  font-weight: 700;
+  color: #fff;
+  margin: 0; /* FIXED: Removed margins that caused misalignment */
+  display: flex; /* Flexbox to align logo and text horizontally */
+  align-items: center; /* Vertically center logo with text */
+  gap: 12px; /* Space between logo and text */
+}
+
+.site-logo {
+  height: 40px; /* Fixed height to match nav bar proportions */
+  width: auto; /* Maintain aspect ratio */
+  object-fit: contain; /* Ensure logo fits within dimensions without distortion */
+  border-radius: 6px; /* Subtle rounded corners for modern look */
+  background: rgba(
+    255,
+    255,
+    255,
+    0.1
+  ); /* Subtle background for logo contrast */
+  padding: 4px; /* Small padding around logo */
+  transition: transform 0.3s ease; /* Smooth hover animation */
+}
+
+.site-logo:hover {
+  transform: scale(1.05); /* Slight zoom on hover for interactivity */
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 30px; /* Space between nav items */
+  margin: 0; /* FIXED: Removed default margins */
+}
+
+.navbar a {
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+  padding: 8px 16px;
+  border-radius: 6px;
+  transition: all 0.3s ease; /* Smooth hover transition */
+  white-space: nowrap;
+}
+
+.navbar a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px); /* Subtle lift effect */
+}
