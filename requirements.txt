@@ -1,0 +1,7 @@
+python-dotenv
+fastapi
+uvicorn[standard]
+pymysql
+argon2-cffi
+pydantic
+email-validator

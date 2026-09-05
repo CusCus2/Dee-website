@@ -1,6 +1,7 @@
 .__pycache__
-.pyc
+*.pyc
 
 .env
-ol_again
-old
+/ol_again
+/old
+/logs

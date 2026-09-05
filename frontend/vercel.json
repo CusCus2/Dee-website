@@ -1,0 +1,9 @@
+{
+  "rewrites": [
+    { "source": "/account", "destination": "/account.html" },
+    { "source": "/reviews", "destination": "/reviews.html" },
+    { "source": "/english", "destination": "/english.html" },
+    { "source": "/spanish", "destination": "/spanish.html" },
+    { "source": "/french", "destination": "/french.html" }
+  ]
+}
