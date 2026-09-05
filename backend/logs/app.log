@@ -145,3 +145,4 @@ Session created successfully | session_id=1
 User retrieved successfully | user_id=1
 No review found with user_id=1
 Review created successfully | review_id=1
+SQLite db schema initialised successfully 
