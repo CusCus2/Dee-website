@@ -1,6 +1,4 @@
 from contextlib import contextmanager
-import sqlite3
-import sqlalchemy as sa
 import logging
 import os
 from pathlib import Path
