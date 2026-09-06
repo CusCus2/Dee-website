@@ -151,6 +151,4 @@ def delete_review(
             detail=str(e)
         )
 
-    return {
-        "message" : "Review deleted successfully!"
-    }
+    return Response(status_code=status.HTTP_204_NO_CONTENT)

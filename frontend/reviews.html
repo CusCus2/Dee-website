@@ -16,8 +16,12 @@
       <section class="hero-grid border-b border-forest/10">
         <div class="mx-auto max-w-7xl px-5 py-20 text-center lg:px-8 lg:py-24">
           <div class="eyebrow">Student stories</div>
-          <h1 class="display mx-auto mt-4 max-w-4xl text-6xl leading-[1.02] text-forest sm:text-7xl">Real experiences from people learning to <span class="italic text-coral">speak more freely.</span></h1>
-          <p class="mx-auto mt-6 max-w-2xl text-lg leading-8 text-ink/60">Browse reviews from Mingle & Speak learners, or log in to add and manage your own.</p>
+          <h1 class="display mx-auto mt-4 max-w-4xl text-6xl leading-[1.02] text-forest sm:text-7xl">
+            Real experiences from people learning to <span class="italic text-coral">speak more freely.</span>
+          </h1>
+          <p class="mx-auto mt-6 max-w-2xl text-lg leading-8 text-ink/60">
+            Browse reviews from Mingle & Speak learners, or log in to add and manage your own.
+          </p>
         </div>
       </section>
 
@@ -27,12 +31,32 @@
             <div class="flex flex-col justify-between gap-5 md:flex-row md:items-start">
               <div>
                 <div class="eyebrow">Your experience</div>
-                <h2 data-review-form-title class="display mt-2 text-4xl text-forest">Leave a review</h2>
-                <p data-review-form-hint class="mt-2 text-sm leading-6 text-ink/55">Tell future learners what your experience was like.</p>
+                <div class="mt-2 flex flex-wrap items-center gap-3">
+                  <h2 data-review-form-title class="display text-4xl text-forest">Leave a review</h2>
+                  <span data-admin-badge class="hidden rounded-full bg-coral/15 px-3 py-1 text-xs font-extrabold uppercase tracking-[.12em] text-coral">
+                    Admin mode
+                  </span>
+                </div>
+                <p data-review-form-hint class="mt-2 text-sm leading-6 text-ink/55">
+                  Tell future learners what your experience was like.
+                </p>
               </div>
             </div>
 
             <div data-form-fields class="mt-7 grid gap-5">
+              <label class="grid gap-2 text-sm font-bold text-forest">
+                Name shown with review
+                <input
+                  class="form-input"
+                  name="author_name"
+                  type="text"
+                  maxlength="100"
+                  autocomplete="name"
+                  placeholder="e.g. Maria"
+                  required
+                />
+              </label>
+
               <div>
                 <div class="mb-2 text-sm font-bold text-forest">Rating</div>
                 <div class="flex gap-1" role="radiogroup" aria-label="Rating out of five">
@@ -45,8 +69,15 @@
                 <input type="hidden" name="rating" data-rating-input value="5" />
               </div>
 
-              <label class="grid gap-2 text-sm font-bold text-forest">Your review
-                <textarea class="form-input min-h-36 resize-y" name="comment" maxlength="2000" placeholder="What changed for you? What did you enjoy? What would you tell another learner?" required></textarea>
+              <label class="grid gap-2 text-sm font-bold text-forest">
+                Your review
+                <textarea
+                  class="form-input min-h-36 resize-y"
+                  name="comment"
+                  maxlength="2000"
+                  placeholder="What changed for you? What did you enjoy? What would you tell another learner?"
+                  required
+                ></textarea>
               </label>
             </div>
 
@@ -65,17 +96,22 @@
           <div class="text-sm text-ink/45">Reviews are linked to registered accounts.</div>
         </div>
 
-        <div data-loading-reviews class="mt-10 rounded-2xl bg-white/70 p-6 text-sm text-ink/55 ring-1 ring-forest/10">Loading reviews…</div>
+        <div data-loading-reviews class="mt-10 rounded-2xl bg-white/70 p-6 text-sm text-ink/55 ring-1 ring-forest/10">
+          Loading reviews…
+        </div>
+
         <div data-empty-reviews class="mt-10 hidden rounded-[1.6rem] border border-dashed border-forest/20 bg-white/55 p-10 text-center">
           <div class="display text-3xl text-forest">No reviews yet.</div>
           <p class="mt-2 text-sm text-ink/55">The first student review will appear here.</p>
         </div>
+
         <div data-reviews-grid class="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3"></div>
       </section>
     </main>
 
     <div data-site-footer></div>
   </div>
+
   <script type="module" src="/src/reviews.js"></script>
 </body>
 </html>

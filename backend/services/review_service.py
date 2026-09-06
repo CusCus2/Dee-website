@@ -14,7 +14,7 @@ class ReviewService:
     def __init__(self, db: Database):
         self.db = db
 
-    def create_review(self, user: Users, author : str, rating: float, comment: str) -> Reviews:
+    def create_review(self, user: Users, author_name : str, rating: float, comment: str) -> Reviews:
         # check does user already have a review
         if user.role != "admin":
             existing_review = self.db.get_review_by_user_id(user.id)
@@ -25,7 +25,7 @@ class ReviewService:
         review = Reviews(
             id = None, 
             user_id = user.id,
-            author_name = author,
+            author_name = author_name,
             rating = rating,
             comment = comment.strip(),
             status = "published"
@@ -38,7 +38,7 @@ class ReviewService:
     def get_reviews(self) -> list[Reviews]:
         return self.db.get_reviews()
 
-    def update_review(self, review_id : int, user: Users, author : str, rating: float | None = None, comment: str | None = None) -> Reviews:
+    def update_review(self, review_id : int, user: Users, author_name : str, rating: float | None = None, comment: str | None = None) -> Reviews:
         review = self.db.get_review_by_id(review_id)
         if review is None:
             raise ReviewNotFoundError("Review not found")
@@ -46,8 +46,8 @@ class ReviewService:
         if review.user_id != user.id and user.role != "admin":
             raise ReviewForbiddenError("You are not allowed to update this review")
 
-        if author is not None:
-            review.author_name = author.strip()
+        if author_name is not None:
+            review.author_name = author_name.strip()
         if rating is not None:
             review.rating = rating
         if comment is not None:
