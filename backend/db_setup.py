@@ -578,7 +578,7 @@ class Database:
                         user_id = row["user_id"],
                         token_hash = row["token_hash"],
                         created_at = row["created_at"],
-                        expires_at = datetime.datetime.fromisoformat(row["expires_at"]), # convert it back for comparison
+                        expires_at = datetime.fromisoformat(row["expires_at"]), # convert it back for comparison
                         revoked_at = row["revoked_at"]
                     )
                     self.logger.debug("Session retrieved successfully")

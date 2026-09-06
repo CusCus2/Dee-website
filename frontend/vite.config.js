@@ -12,7 +12,8 @@ export default defineConfig({
         reviews: resolve(__dirname, 'reviews.html'),
         english: resolve(__dirname, 'english.html'),
         spanish: resolve(__dirname, 'spanish.html'),
-        french: resolve(__dirname, 'french.html')
+        french: resolve(__dirname, 'french.html'),
+        ielts: resolve(__dirname, 'ielts.html'),
       }
     }
   }
