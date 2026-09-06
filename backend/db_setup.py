@@ -27,7 +27,7 @@ class Reviews:
     rating: float
     comment: str
     status : str
-    created_at: datetime | None
+    created_at: datetime | None = None
 
 @dataclass
 class Session:
@@ -89,7 +89,6 @@ class Database:
             comment TEXT NOT NULL,
             status VARCHAR(30) NOT NULL DEFAULT 'published',
             created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-            author_name VARCHAR(100) NOT NULL
 
             CONSTRAINT fk_reviews_user
                 FOREIGN KEY (user_id)
@@ -571,7 +570,7 @@ class Database:
                 cursor.execute(statement, (token_hash,))
                 row = cursor.fetchone()
                 if row is None:
-                    self.logger.debug("No session found with token_hash =%s", token_hash)
+                    self.logger.debug("No session found with token_hash" )
                     return None
                 else:
                     session = Session(
@@ -582,7 +581,7 @@ class Database:
                         expires_at = datetime.datetime.fromisoformat(row["expires_at"]), # convert it back for comparison
                         revoked_at = row["revoked_at"]
                     )
-                    self.logger.debug("Session retrieved successfully | token_hash=%s", token_hash)
+                    self.logger.debug("Session retrieved successfully")
                     return session
 
         except pymysql.err.IntegrityError as e:
