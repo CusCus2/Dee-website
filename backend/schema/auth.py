@@ -24,3 +24,4 @@ class LoginResponse(BaseModel):
     id: int
     username: str
     email: EmailStr
+    role : str

@@ -5,6 +5,7 @@ from pathlib import Path
 from typing import Iterator
 from dataclasses import dataclass
 import datetime
+from datetime import datetime
 
 import pymysql
 from pymysql.connections import Connection
@@ -16,14 +17,17 @@ class Users:
     email: str
     password_hash: str
     created_at: str | None = None
+    role: str = "user"
 
 @dataclass
 class Reviews:
     id: int | None
     user_id: int
+    author_name : str
     rating: float
     comment: str
     status : str
+    created_at: datetime | None
 
 @dataclass
 class Session:
@@ -70,7 +74,8 @@ class Database:
             username VARCHAR(50) NOT NULL UNIQUE,
             email VARCHAR(255) NOT NULL UNIQUE,
             password_hash VARCHAR(255) NOT NULL,
-            created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+            created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            role VARCHAR(20) NOT NULL DEFAULT 'user'
         );
 
         """,
@@ -79,18 +84,17 @@ class Database:
         CREATE TABLE IF NOT EXISTS reviews (
             id INT AUTO_INCREMENT PRIMARY KEY,
             user_id INT NOT NULL,
+            author_name VARCHAR(100) NOT NULL,
             rating INT NOT NULL,
             comment TEXT NOT NULL,
             status VARCHAR(30) NOT NULL DEFAULT 'published',
             created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            author_name VARCHAR(100) NOT NULL
 
             CONSTRAINT fk_reviews_user
                 FOREIGN KEY (user_id)
                 REFERENCES users(id)
                 ON DELETE CASCADE,
-
-            CONSTRAINT uq_reviews_user
-                UNIQUE (user_id),
 
             CONSTRAINT chk_review_rating
                 CHECK (rating >= 1 AND rating <= 5)
@@ -183,15 +187,15 @@ class Database:
 
     def create_review(self, review: Reviews) -> int:
             statement = """
-            INSERT INTO reviews (user_id, rating, comment, status)
-            VALUES (%s, %s, %s, %s)
+            INSERT INTO reviews (user_id, author_name, rating, comment, status)
+            VALUES (%s, %s, %s, %s, %s)
             """
             try:
                 with self._connection() as conn:
                     self.logger.debug("Succesfully connected to DB to insert new review")
                     with conn.cursor() as cursor:
                         cursor.execute(statement, (
-                            review.user_id, review.rating, review.comment, review.status
+                            review.user_id, review.author_name, review.rating, review.comment, review.status
                         ))
                         review_id = cursor.lastrowid
                         self.logger.info("Review created successfully | review_id=%s", review_id)
@@ -250,7 +254,7 @@ class Database:
     def update_review(self, review: Reviews) -> None:
             statement = """
             UPDATE reviews
-            SET rating = %s, comment = %s
+            SET author_name = %s, rating = %s, comment = %s
             WHERE id = %s
             """
             try:
@@ -258,7 +262,7 @@ class Database:
                     self.logger.debug("Succesfully connected to DB to update review")
                     with conn.cursor() as cursor:
                         cursor.execute(statement, (
-                            review.rating, review.comment, review.id
+                           review.author_name, review.rating, review.comment, review.id
                         ))
                         if cursor.rowcount == 0:
                             self.logger.warning("No review found with id=%s", review.id)
@@ -334,7 +338,8 @@ class Database:
                 username=row["username"],
                 email=row["email"],
                 password_hash=row["password_hash"],
-                created_at=row["created_at"]
+                created_at=row["created_at"],
+                role=row["role"]
             )
             self.logger.info("User retrieved successfully | user_id=%s", user_id)
             return user
@@ -364,7 +369,8 @@ class Database:
                             username=row["username"],
                             email=row["email"],
                             password_hash=row["password_hash"],
-                            created_at=row["created_at"]
+                            created_at=row["created_at"],
+                            role=row["role"]
                         )
                         self.logger.info("User retrieved successfully | email=%s", email)
                         return user
@@ -394,7 +400,8 @@ class Database:
                                 username=row["username"],
                                 email=row["email"],
                                 password_hash=row["password_hash"],
-                                created_at=row["created_at"]
+                                created_at=row["created_at"],
+                                role=row["role"]
                             )
                             self.logger.info("User retrieved successfully | username=%s", username)
                             return user
@@ -426,6 +433,7 @@ class Database:
                                 review = Reviews (
                                     id = row["id"],
                                     user_id = row["user_id"],
+                                    author_name = row["author_name"],
                                     rating = row["rating"],
                                     comment = row["comment"],
                                     status = row["status"],
@@ -460,6 +468,7 @@ class Database:
                             review = Reviews (
                                 id = row["id"],
                                 user_id = row["user_id"],
+                                author_name = row["author_name"],
                                 rating = row["rating"],
                                 comment = row["comment"],
                                 status = row["status"],
@@ -496,6 +505,7 @@ class Database:
                                     review = Reviews (
                                         id = row["id"],
                                         user_id = row["user_id"],
+                                        author_name = row["author_name"],
                                         rating = row["rating"],
                                         comment = row["comment"],
                                         status = row["status"],

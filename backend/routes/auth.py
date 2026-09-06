@@ -3,6 +3,12 @@ from schema.auth import *
 from services.auth_service import *
 from dependencies.auth import get_auth_service, require_user
 
+import os
+
+IS_PRODUCTION = (
+    os.getenv("ENVIRONMENT") == "production"
+)
+
 router = APIRouter(prefix="/auth", tags=["auth"])
 
 # # need to get the auth service objected created using the db, so do dependancy injection
@@ -66,7 +72,7 @@ def login(
         key = "session",
         value = token,
         httponly = True,
-        secure = False, # temp, change to True when deployed NB!!!!
+        secure = IS_PRODUCTION, # temp, change to True when deployed NB!!!!
         samesite = "lax",
         max_age = 60*60*24, # match db expiry duration
         path = "/" # means cookie works on every page
@@ -75,7 +81,8 @@ def login(
     return LoginResponse(
         id = user.id,
         username= user.username,
-        email = user.email
+        email = user.email,
+        role = user.role
     )
 
 @router.get("/me")
@@ -84,7 +91,8 @@ def me(current_user : Users = Depends(require_user)):
     return { 
         "id" : current_user.id,
         "username" : current_user.username,
-        "email" : current_user.email
+        "email" : current_user.email,
+        "role" : current_user.role
     }
 
 @router.post("/logout")
