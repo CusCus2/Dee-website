@@ -20,7 +20,7 @@ def create_review(
     try:
         review = review_service.create_review(
             user = user,
-            author = request.author_name,
+            author_name = request.author_name,
             rating = request.rating,
             comment = request.comment
         )
@@ -52,7 +52,7 @@ def create_admin_review(
     try:
         review = review_service.create_review(
             user = user,
-            author = request.author_name,
+            author_name = request.author_name,
             rating = request.rating,
             comment = request.comment
         )
